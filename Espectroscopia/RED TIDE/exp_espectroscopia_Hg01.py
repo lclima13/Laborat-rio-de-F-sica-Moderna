@@ -1,6 +1,8 @@
 import csv
-import matplotlib.pyplot as plt
 import json
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 # Caminho para o arquivo CSV exportado
 caminho_arquivo_csv = '/home/lucaslima/Área de Trabalho/Lab de Física Moderna/Espectroscopia/RED TIDE/dados_RED_TIDE.csv'
@@ -26,10 +28,6 @@ with open(caminho_arquivo_csv, 'r') as arquivo_csv:
         lista_de_lambdas.append(dado2)
 
 
-# Exibir a listas
-print(lista_de_lambdas)
-print(lista_de_dados)
-
 
 # Plotar grafico da espectroscopia
 plt.plot(lista_de_lambdas,lista_de_dados)
@@ -41,16 +39,14 @@ plt.show()
 plt.hist(lista_de_dados, bins='auto', alpha=0.7, color='blue', edgecolor='black')
 
 # Adicionar rótulos e título ao gráfico
-plt.xlabel('Valores')
+plt.xlabel('Intensidade')
 plt.ylabel('Frequência')
 plt.title('Histograma dos Dados Hg 01')
 
 # Mostrar o gráfico
 plt.show()
 
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import norm
+
 
 # Lista de dados
 '''
@@ -97,20 +93,6 @@ plt.xlim(-1,1)
 
 plt.legend()
 plt.show()
-
-
-#Z-dispersão
-lista_z = []
-for i in lista_de_dados:
-    z = (i-media)/desvio_padrao
-    lista_z.append(z)
-
-plt.plot(lista_de_lambdas,lista_z)
-plt.xlabel('$\lambda$(m)')
-plt.ylabel('Z-Dispersão')
-plt.show()
-
-
 
 
 # Seu dicionário
