@@ -96,10 +96,9 @@ plt.show()
 
 
 # Seu dicionário
-dados_estatisticos = {'Media': media, 'Desvio Padrao': desvio_padrao}
+dados_estatisticos = {'Media': media, '\nDesvio Padrao': desvio_padrao}
 
 # Converter o dicionário para uma string JSON usando json.dumps()
-dicionario_json = json.dumps(dados_estatisticos)
 
 # Caminho do arquivo de texto
 caminho_arquivo = 'dados_estatisticos_Hg01.txt'
@@ -107,4 +106,7 @@ caminho_arquivo = 'dados_estatisticos_Hg01.txt'
 # Abrir o arquivo no modo de escrita
 with open(caminho_arquivo, 'w') as arquivo:
     # Escrever a string JSON no arquivo
-    arquivo.write(dicionario_json)
+    
+    for chave, valor in dados_estatisticos.items():
+        linha = f"{chave}: {valor}"
+        arquivo.write(linha)
