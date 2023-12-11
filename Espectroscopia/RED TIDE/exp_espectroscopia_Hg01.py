@@ -31,8 +31,9 @@ with open(caminho_arquivo_csv, 'r') as arquivo_csv:
 
 # Plotar grafico da espectroscopia
 plt.plot(lista_de_lambdas,lista_de_dados)
-plt.xlabel('$\lambda$(m)')
+plt.xlabel('$\lambda$(nm)')
 plt.ylabel('Intensidade')
+plt.grid()
 plt.show()
 
 # Criar o histograma
@@ -42,7 +43,7 @@ plt.hist(lista_de_dados, bins='auto', alpha=0.7, color='blue', edgecolor='black'
 plt.xlabel('Intensidade')
 plt.ylabel('Frequência')
 plt.title('Histograma dos Dados Hg 01')
-
+plt.grid()
 # Mostrar o gráfico
 plt.show()
 
@@ -71,35 +72,91 @@ xmin, xmax = min(dados) - 1, max(dados) + 1
 x = np.linspace(xmin, xmax, 100)
 y = norm.pdf(x, media, desvio_padrao)
 
-# Plotar o histograma dos dados
-plt.hist(dados, bins='auto', density=True, alpha=0.7, color='blue', edgecolor='black')
 
-# Plotar a distribuição gaussiana
-plt.plot(x, y, '-r', label='Distribuição Gaussiana')
+plt.hist(dados, bins='auto', density=True, alpha=0.7, color='blue', edgecolor='black')# Plotar o histograma dos dados
 
-# Adicionar rótulos e título ao gráfico
-plt.xlabel('Valores')
+
+plt.plot(x, y, '-r', label='Distribuição Gaussiana')# Plotar a distribuição gaussiana
+plt.xlabel('Intensidade')
 plt.ylabel('Densidade de Probabilidade')
 plt.title('Histograma e Distribuição Gaussiana dos Dados')
-
-# Adicionar legenda
 plt.legend()
-
-# Mostrar o gráfico
+plt.grid()
 plt.show()
 
+#Plotar Distribuição Gaussiana
 plt.plot(x, y, '-r', label='Distribuição Gaussiana')
 plt.xlim(-1,1)
+plt.legend()
+plt.grid()
+plt.show()
+
+#Sinal e Ruido 1*sigma
+limiar_ruido1 = media + 1 * desvio_padrao
+
+cores = ['blue' if valor <= limiar_ruido1 else 'red' for valor in lista_de_dados]
+
+plt.scatter(lista_de_lambdas, lista_de_dados, c=cores,marker='o',s = 10)
+
+plt.xlabel('Intensidade')
+plt.ylabel('$\lambda$(nm)')
+plt.title('Gráfico Sinal/Ruido para 1$\sigma$(68%)')
+
+legend_labels = ['Ruído', 'Sinal']
+legend_colors = ['blue', 'red']
+
+for label, color in zip(legend_labels, legend_colors):
+    plt.scatter([], [], color=color, label=label)
+
+plt.legend()
+plt.grid()
+plt.show()
+
+#Sinal e ruido 2 sigmas
+limiar_ruido2 = media + 2 * desvio_padrao
+
+cores = ['blue' if valor <= limiar_ruido2 else 'red' for valor in lista_de_dados]
+
+plt.scatter(lista_de_lambdas, lista_de_dados, c=cores,marker='o',s = 10)
+
+plt.xlabel('Intensidade')
+plt.ylabel('$\lambda$(nm)')
+plt.title('Gráfico Sinal/Ruido para 2$\sigma$(95%)')
+
+legend_labels = ['Ruído', 'Sinal']
+legend_colors = ['blue', 'red']
+
+for label, color in zip(legend_labels, legend_colors):
+    plt.scatter([], [], color=color, label=label)
+
+plt.legend()
+plt.grid()
+plt.show()
+
+#Sinal e ruido 3 sigmas
+limiar_ruido3 = media + 3 * desvio_padrao
+
+cores = ['blue' if valor <= limiar_ruido3 else 'red' for valor in lista_de_dados]
+
+plt.scatter(lista_de_lambdas, lista_de_dados, c=cores,marker='o',s = 10)
+
+plt.xlabel('Intensidade')
+plt.ylabel('$\lambda$(nm)')
+plt.title('Gráfico Sinal/Ruido para 2$\sigma$(99,7%)')
+
+legend_labels = ['Ruído', 'Sinal']
+legend_colors = ['blue', 'red']
+
+for label, color in zip(legend_labels, legend_colors):
+    plt.scatter([], [], color=color, label=label)
 
 plt.legend()
 plt.show()
-
 
 # Seu dicionário
 dados_estatisticos = {'Media': media, '\nDesvio Padrao': desvio_padrao}
 
 # Converter o dicionário para uma string JSON usando json.dumps()
-
 # Caminho do arquivo de texto
 caminho_arquivo = 'dados_estatisticos_Hg01.txt'
 
