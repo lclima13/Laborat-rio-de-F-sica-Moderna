@@ -22,7 +22,7 @@ with open(caminho_arquivo_csv, 'r') as arquivo_csv:
     # Iterar sobre as linhas restantes do arquivo CSV
     for linha in leitor_csv:
         # Assumindo que a coluna desejada é a primeira (índice 0)
-        dado = float(linha[1])
+        dado = float(linha[7])
         lista_de_dados.append(dado)
         dado2 = float(linha[0])
         lista_de_lambdas.append(dado2)
@@ -42,7 +42,7 @@ plt.hist(lista_de_dados, bins='auto', alpha=0.7, color='blue', edgecolor='black'
 # Adicionar rótulos e título ao gráfico
 plt.xlabel('Intensidade')
 plt.ylabel('Frequência')
-plt.title('Histograma dos Dados Hg 01')
+plt.title('Histograma dos Dados LED Teto')
 plt.grid()
 # Mostrar o gráfico
 plt.show()
@@ -158,7 +158,7 @@ dados_estatisticos = {'Media': media, '\nDesvio Padrao': desvio_padrao}
 
 # Converter o dicionário para uma string JSON usando json.dumps()
 # Caminho do arquivo de texto
-caminho_arquivo = 'dados_estatisticos_Hg01.txt'
+caminho_arquivo = 'dados_estatisticos_LedTeto.txt'
 
 # Abrir o arquivo no modo de escrita
 with open(caminho_arquivo, 'w') as arquivo:
