@@ -33,6 +33,7 @@ with open(caminho_arquivo_csv, 'r') as arquivo_csv:
 plt.plot(lista_de_lambdas,lista_de_dados)
 plt.xlabel('$\lambda$(nm)')
 plt.ylabel('Intensidade')
+plt.title('Espectroscopia HeNe Red Tide USB 650')
 plt.grid()
 plt.show()
 
@@ -88,6 +89,7 @@ plt.show()
 plt.plot(x, y, '-r', label='Distribuição Gaussiana')
 plt.xlim(-1,1)
 plt.legend()
+plt.title('Distribuição Gaussiana HeNe')
 plt.grid()
 plt.show()
 
@@ -100,7 +102,7 @@ plt.scatter(lista_de_lambdas, lista_de_dados, c=cores,marker='o',s = 10)
 
 plt.ylabel('Intensidade')
 plt.xlabel('$\lambda$(nm)')
-plt.title('Gráfico Sinal/Ruido para 1$\sigma$(68%)')
+plt.title('Gráfico Sinal/Ruido HeNe para 1$\sigma$(68%)')
 
 legend_labels = ['Ruído', 'Sinal']
 legend_colors = ['blue', 'red']
@@ -121,7 +123,7 @@ plt.scatter(lista_de_lambdas, lista_de_dados, c=cores,marker='o',s = 10)
 
 plt.ylabel('Intensidade')
 plt.xlabel('$\lambda$(nm)')
-plt.title('Gráfico Sinal/Ruido para 2$\sigma$(95%)')
+plt.title('Gráfico Sinal/Ruido HeNe para 2$\sigma$(95%)')
 
 legend_labels = ['Ruído', 'Sinal']
 legend_colors = ['blue', 'red']
@@ -142,7 +144,7 @@ plt.scatter(lista_de_lambdas, lista_de_dados, c=cores,marker='o',s = 10)
 
 plt.ylabel('Intensidade')
 plt.xlabel('$\lambda$(nm)')
-plt.title('Gráfico Sinal/Ruido para 2$\sigma$(99,7%)')
+plt.title('Gráfico Sinal/Ruido HeNe para 3$\sigma$(99,7%)')
 
 legend_labels = ['Ruído', 'Sinal']
 legend_colors = ['blue', 'red']
@@ -153,8 +155,24 @@ for label, color in zip(legend_labels, legend_colors):
 plt.legend()
 plt.show()
 
+
+from scipy import stats
+
+
+# Calcula o intervalo de confiança para a média (assumindo distribuição normal)
+confidence_level = 0.95  # Nível de confiança de 95%
+mean_ly = np.mean(lista_de_dados)
+std_ly = np.std(lista_de_dados, ddof=1)  # Use ddof=1 para calcular a amostra padrão
+
+# Calcula o intervalo de confiança
+confidence_interval = stats.norm.interval(confidence_level, loc=mean_ly, scale=std_ly / np.sqrt(len(lista_de_dados)))
+
+print("Média:", mean_ly)
+print("Desvio Padrão:", std_ly)
+print(f"Intervalo de Confiança ({confidence_level * 100}%):", confidence_interval)
+
 # Seu dicionário
-dados_estatisticos = {'Media': media, '\nDesvio Padrao': desvio_padrao}
+dados_estatisticos = {'Media': media, '\nDesvio Padrao': desvio_padrao,'\nIntervalo de Confiança 95%': confidence_interval}
 
 # Converter o dicionário para uma string JSON usando json.dumps()
 # Caminho do arquivo de texto
