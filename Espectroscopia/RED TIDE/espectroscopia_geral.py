@@ -7,11 +7,11 @@ from scipy.stats import norm
 #Adicione o numero e veja o espectro:
 #Hg01[1] Hg02[2] Hg03[3] LED Tubo[4] HeNe[5] Vm01[6] Vm02[7] Vm03[8] Vm04[9] CuNO3[10]
 #Na01[11] Na02[12] Na03[13] Na04[14] Led_Viol_Forte[15] Led_Viol[16] Laser_verde[17] Isqueiro[18]
-numero_espectro = 18
+numero_espectro = 3
 
 #Adicione um intervalo de sinal que deseja avaliar
-antes_sinal = [380,450]
-depos_sinal = [949,950]
+antes_sinal = [440,490]
+depos_sinal = [494,539]
 
 # Caminho para o arquivo CSV exportado
 caminho_arquivo_csv = '/home/lucaslima/Área de Trabalho/Lab de Física Moderna/Espectroscopia/RED TIDE/dados_RED_TIDE.csv'

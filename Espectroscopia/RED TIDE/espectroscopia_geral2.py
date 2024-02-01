@@ -8,7 +8,7 @@ from scipy.stats import norm
 #Hg01[1] Hg02[2] Hg03[3] LED Tubo[4] HeNe[5] Vm01[6] Vm02[7] Vm03[8] Vm04[9] CuNO3[10]
 #Na01[11] Na02[12] Na03[13] Na04[14] Led_Viol_Forte[15] Led_Viol[16] Laser_verde[17] Isqueiro[18]
 
-numero_espectro = 18
+numero_espectro = 16
 
 #Para mudar o nome nos gráficos, apert crtl H e mude do nome que esta no momento para o novo nome
 lista_nomes = ['Hg01', 'Hg02', 'Hg03', 'LED Tubo', 'HeNe', 'Vm01', 'Vm02', 'Vm03', 'Vm04', 'CuNO3',
